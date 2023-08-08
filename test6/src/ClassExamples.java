@@ -1,4 +1,4 @@
-public class ClassExamples {
+class ClassExamples {
 }
 /*
 Example 1 - среднее значение элементов массива
