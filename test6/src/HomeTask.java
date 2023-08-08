@@ -1,75 +1,81 @@
 class HomeTask {
 }
-abstract class Figure {
-    abstract double getArea();
-    void getName() {
-        System.out.println("This is a Figure.");
+abstract class Car {
+    String licensePlate;
+    String brand;
+    abstract double getPrice();
+    void getInfo(){
+        System.out.println("This is a Car.");
     }
 }
-class Twodimensional extends Figure {
-    double dim1;
-    double dim2;
-    Twodimensional(double a, double b){
-        this.dim1 = a;
-        this.dim2 = b;
+class LargeCar extends Car {
+    double getPrice() {
+        return 100;
     }
-    Twodimensional(){
-        dim1 = -1;
-        dim2 = -1;
+    void getInfo() {
+        System.out.println("This is a Large Car.");
     }
-    double getArea() {
-        return dim1 * dim2;
+    double carWeighs(){
+        return 5000;
     }
-    void getName(){
-        System.out.println("This is an override method in Twodimensional");
+    double carWeighs(double weight){
+        return 5000 + weight;
     }
-}
-class Threedimentional extends Figure {
-    double dim1;
-    double dim2;
-    double weight;
-    Threedimentional(double a, double b, double w){
-        this.dim1 = a;
-        this.dim2 = b;
-        this.weight = w;
-    }
-    Threedimentional(){
-        dim1 = -1;
-        dim2 = -1;
-        weight = -1;
-    }
-    double getArea() {
-        return dim1 * dim2 * weight;
-    }
-    void getName(){
-        System.out.println("This is an override method in Threedimentional");
+    int carWeighs(int weight){
+        return 5000 + weight;
     }
 }
-class Rectangle extends Twodimensional {
-    Rectangle(double a, double b){
-        super(a,b);
+class Bus extends LargeCar {
+    int years;
+    Bus(){
+        licensePlate = "no license";
+        brand = "no name";
+        years = 0;
     }
-    Rectangle(double a, int side){
-        this.dim1 = a;
-        this.dim2 = side;
+    Bus(String licensePlate, String brand, int years) {
+        this.licensePlate = licensePlate;
+        this.brand = brand;
+        this.years = years;
     }
-    void getName(String str){
-        System.out.println("This is an overload method show in Rectangle." + str);
-    }
-
-}
-class Parallelepiped extends Threedimentional {
-    Parallelepiped(double a, double b, double w){
-        super(a, b, w);
-    }
-    void getName(String str, double count){
-        System.out.println("This is an overload method in Parallelepiped." + str + " count of sides: " + count);
+    void getInfo() {
+        System.out.println("This is a Bus.");
     }
 }
-
+class MiniCar extends Car {
+    double getPrice(){
+        return 200;
+    }
+    void getInfo() {
+        System.out.println("This is a Mini Car.");
+    }
+}
+class SportCar extends MiniCar {
+    boolean hasRoof;
+    SportCar() {
+        hasRoof = false;
+        licensePlate = "no";
+        brand = "no";
+    }
+    SportCar(boolean hasRoof, String licensePlate, String brand){
+        this.hasRoof = hasRoof;
+        this.licensePlate = licensePlate;
+        this.brand = brand;
+    }
+    void getInfo() {System.out.println("This is a SportCar.");}
+    int countPass() {return 0;}
+    String countPass(String pass) {return "Count of passagers " + pass;}
+}
 class Main {
     public static void main(String[] args) {
-        // Figure f = new Figure(); I can`t create abstract class from object
-
+        SportCar bmw = new SportCar();
+        SportCar audi = new SportCar(false, "AA 2107 AA", "Audi");
+        MiniCar mini = new MiniCar();
+        Bus bogdan = new Bus();
+        Bus etalon = new Bus("СВ 2209 АХ", "Etalon", 10);
+        LargeCar largecar = new LargeCar();
+        //
+        double res = largecar.carWeighs(200.1);
+        System.out.println("The car weighs " + res);
+        largecar.getInfo();
     }
 }
